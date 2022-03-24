@@ -64,6 +64,7 @@ const styles = {
     'label + &': {
       marginTop: '9px',
     },
+    backgroundColor: 'var(--color-background-default)',
     border: '1px solid var(--color-border-default)',
     color: 'var(--color-text-default)',
     height: '48px',
@@ -204,6 +205,7 @@ const themeToInputProps = {
 };
 
 const TextField = ({
+  'data-testid': dataTestId,
   error,
   classes,
   theme,
@@ -228,7 +230,7 @@ const TextField = ({
     autoComplete,
   });
 
-  if (onPaste) {
+  if (onPaste || dataTestId) {
     if (!inputProps.InputProps) {
       inputProps.InputProps = {};
     }
@@ -236,6 +238,7 @@ const TextField = ({
       inputProps.InputProps.inputProps = {};
     }
     inputProps.InputProps.inputProps.onPaste = onPaste;
+    inputProps.InputProps.inputProps['data-testid'] = dataTestId;
   }
 
   return (
@@ -255,6 +258,10 @@ TextField.defaultProps = {
 };
 
 TextField.propTypes = {
+  /**
+   * A test ID that gets set on the input element
+   */
+  'data-testid': PropTypes.string,
   /**
    * Show error message
    */
