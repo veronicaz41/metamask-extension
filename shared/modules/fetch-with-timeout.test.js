@@ -6,7 +6,7 @@ describe('getFetchWithTimeout', () => {
   it('fetches a url', async () => {
     nock('https://api.infura.io').get('/money').reply(200, '{"hodl": false}');
 
-    const fetchWithTimeout = getFetchWithTimeout(SECOND * 30);
+    const fetchWithTimeout = getFetchWithTimeout();
     const response = await (
       await fetchWithTimeout('https://api.infura.io/money')
     ).json();
