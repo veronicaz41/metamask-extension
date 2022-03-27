@@ -46,13 +46,7 @@ describe('getFetchWithTimeout', () => {
   });
 
   it('throws on invalid timeout', async () => {
-    await expect(() => getFetchWithTimeout()).toThrow(
-      'Must specify positive integer timeout.',
-    );
     await expect(() => getFetchWithTimeout(-1)).toThrow(
-      'Must specify positive integer timeout.',
-    );
-    await expect(() => getFetchWithTimeout({})).toThrow(
       'Must specify positive integer timeout.',
     );
     await expect(() => getFetchWithTimeout(true)).toThrow(
