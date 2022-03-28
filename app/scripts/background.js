@@ -70,12 +70,6 @@ if (inTest || process.env.METAMASK_DEBUG) {
 // initialization flow
 initialize().catch(log.error);
 
-// browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//   if (request === 'start') {
-//     initialize().catch(log.error);
-//   }
-// })
-
 /**
  * @typedef {import('../../shared/constants/transaction').TransactionMeta} TransactionMeta
  */
@@ -487,12 +481,12 @@ function setupController(initState, initLangCode) {
     if (count) {
       label = String(count);
     }
-    if (process.env.ENABLE_MV3 !== true) {
-      browser.browserAction.setBadgeText({ text: label });
-      browser.browserAction.setBadgeBackgroundColor({ color: '#037DD6' });
-    } else {
+    if (process.env.ENABLE_MV3 === true) {
       browser.action.setBadgeText({ text: label });
       browser.action.setBadgeBackgroundColor({ color: '#037DD6' });
+    } else {
+      browser.browserAction.setBadgeText({ text: label });
+      browser.browserAction.setBadgeBackgroundColor({ color: '#037DD6' });
     }
   }
 
